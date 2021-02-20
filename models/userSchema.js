@@ -6,7 +6,7 @@ let Schema = mongoose.Schema
 let UserSchema = Schema(
     {
         _id: { type: Schema.ObjectId, auto: true },
-        nombre: { type: String, required: true },
+        name: { type: String, required: true },
         email: { type: String, required: true, unique: true },
         password: { type: String, required: true },
         rol: { type: String, enum: ['public', 'admin', '3sector'], default: 'public' },
