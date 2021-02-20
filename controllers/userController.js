@@ -2,6 +2,26 @@ let User = require('../models/userSchema')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
+
+
+
+async function getIsTercerSector(req, res) {
+    const emailUser = req.params.email
+    try{
+        const find = await ThirdSector.findOne({"ENT EMAIL": emailUser}).exec()
+        const ret = {
+            'ent':find['NUM ENT'],
+            'name':find['ENT NOME'],
+            'address':find['ENT DIRECCION'],
+        };
+
+        if(find) res.status(200).json(ret)
+        else res.status(401).json(false)
+    }catch(error){
+        res.status(500).json('error:'+error)
+    }
+}
+
 // Devuelve todos los usuarios
 async function getUsers(req, res) {
     try{
@@ -49,4 +69,4 @@ async function deleteUser(req, res){
     }
 }
 
-module.exports = { getUsers, getUser, updateUser, deleteUser}
+module.exports = { getUsers, getUser, updateUser, deleteUser, getIsTercerSector}
