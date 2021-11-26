@@ -24,7 +24,9 @@ app.get('/', (req, res)=>{
     res.status(200).send('Bienvenid@ a nuestro API RestFull (backend)')
 })
 
-
+app.get('/watson', (req, res)=>{
+    res.status(200).send('Watsonnnn')
+})
 
 const run = async () => {
     await mongoose.connect(process.env.URL_BASEDATOS, 
